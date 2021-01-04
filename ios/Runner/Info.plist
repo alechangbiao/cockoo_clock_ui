@@ -41,5 +41,8 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<!-- flutter_ble_lib requirements -->
+	<key>NSBluetoothAlwaysUsageDescription</key>
+	<string>Your own description of the purpose.</string>
 </dict>
 </plist>

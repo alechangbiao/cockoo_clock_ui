@@ -1,5 +1,8 @@
+import 'package:cockoo_clock/root.dart';
 import 'package:flutter/material.dart';
-import 'package:cockoo_clock/screens/home_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:cockoo_clock/services/navigation_service.dart';
+import 'package:cockoo_clock/screens/home/home_stack.dart';
 
 void main() {
   runApp(MyApp());
@@ -8,12 +11,25 @@ void main() {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (context) => NavigationService()),
+      ],
+      child: MaterialApp(
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+        ),
+        debugShowCheckedModeBanner: false,
+        home: Root(),
       ),
-      debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
     );
+
+    // return MaterialApp(
+    //   theme: ThemeData(
+    //     primarySwatch: Colors.blue,
+    //   ),
+    //   debugShowCheckedModeBanner: false,
+    //   home: HomeScreen(),
+    // );
   }
 }

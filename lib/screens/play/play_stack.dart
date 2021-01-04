@@ -1,13 +1,24 @@
-import 'package:cockoo_clock/widgets/bottom_nav_bar.dart';
+import 'package:cockoo_clock/services/navigation_service.dart';
 import 'package:flutter/material.dart';
 
-class SettingScreen extends StatelessWidget {
+class PlayStack extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    return Navigator(
+      key: NavigationService.kPlayStack,
+      onGenerateRoute: (RouteSettings settings) {
+        return MaterialPageRoute(
+            settings: settings,
+            builder: (BuildContext context) => _playScreen(context));
+      },
+    );
+  }
+
+  Scaffold _playScreen(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: Text('Setting'),
+        title: Text('Play'),
         actions: [
           Icon(Icons.more_vert),
           SizedBox(width: 10),
@@ -17,7 +28,7 @@ class SettingScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(8.0),
           child: Column(
-            children: [
+            children: <Widget>[
               Image.asset("assets/logo.png"),
               SizedBox(height: 20),
               Row(
@@ -55,7 +66,7 @@ class SettingScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 58.0),
                     child: Text(
-                      "WiFi router",
+                      "Music on phone",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
@@ -64,13 +75,18 @@ class SettingScreen extends StatelessWidget {
                     children: [
                       DropdownButton(
                         items: [
-                          DropdownMenuItem(child: Text("WiFi 1")),
-                          DropdownMenuItem(child: Text("WiFi 2")),
+                          DropdownMenuItem(child: Text("Dilemma")),
+                          DropdownMenuItem(child: Text("Deja Vu")),
                         ],
                         onChanged: (value) {},
                       ),
                       RaisedButton(
-                        child: Text('SET'),
+                        child: Row(
+                          children: <Widget>[
+                            Icon(Icons.play_arrow),
+                            Text('Play'),
+                          ],
+                        ),
                         onPressed: () {},
                       )
                     ],
@@ -83,7 +99,7 @@ class SettingScreen extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 58.0),
                     child: Text(
-                      "Timezone",
+                      "Music on clock",
                       style: TextStyle(fontWeight: FontWeight.bold),
                     ),
                   ),
@@ -92,13 +108,18 @@ class SettingScreen extends StatelessWidget {
                     children: [
                       DropdownButton(
                         items: [
-                          DropdownMenuItem(child: Text("Berlin")),
-                          DropdownMenuItem(child: Text("Tokyo")),
+                          DropdownMenuItem(child: Text("Jingle bells")),
+                          DropdownMenuItem(child: Text("It's alright")),
                         ],
                         onChanged: (value) {},
                       ),
                       RaisedButton(
-                        child: Text('SET'),
+                        child: Row(
+                          children: <Widget>[
+                            Icon(Icons.play_arrow),
+                            Text('Play'),
+                          ],
+                        ),
                         onPressed: () {},
                       )
                     ],
@@ -117,28 +138,14 @@ class SettingScreen extends StatelessWidget {
                     ),
                   ),
                   Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      Container(
-                        width: 150,
-                        child: Row(
-                          children: [
-                            Icon(Icons.volume_down, size: 20),
-                            Container(
-                              width: 100,
-                              child: Slider(
-                                onChanged: (double value) {},
-                                value: 0.5,
-                              ),
-                            ),
-                            Icon(Icons.volume_up, size: 20),
-                          ],
-                        ),
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Icon(Icons.volume_down, size: 20),
+                      Slider(
+                        onChanged: (double value) {},
+                        value: 0.5,
                       ),
-                      RaisedButton(
-                        child: Text('SET'),
-                        onPressed: () {},
-                      ),
+                      Icon(Icons.volume_up, size: 20),
                     ],
                   ),
                 ],
@@ -147,7 +154,6 @@ class SettingScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: MyBottomNavBar(),
     );
   }
 }
